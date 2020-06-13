@@ -19,7 +19,7 @@ export default function Profile({ navigation }) {
                 <View style={{flexDirection:'row'}}>
                 {
                     activities.map(activity => (
-                        <Text style={styles.activityItem}>{activity}</Text>
+                        <Text style={styles.activityItem} key={activity}>{activity}</Text>
                     ))
                 }
                 </View>
