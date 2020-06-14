@@ -11,7 +11,7 @@ export default function Profile({ navigation }) {
         <SafeAreaView style={{ flex: 1, alignItems:'center'}}>
             <CustomHeader title="Profile" isHome={true} navigation={navigation} />
             <View style={{flex:1,width: '90%'}}>
-                <Image source={ProfileImage} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 50 }} />
+                <Image source={ProfileImage} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
                 <Text style={styles.name}> User's name</Text>
                 <Text style={styles.info}>Height: 180cm</Text>
                 <Text style={styles.info}>Weight: 82kg</Text>
@@ -25,18 +25,6 @@ export default function Profile({ navigation }) {
                 </View>
             </View>
         </SafeAreaView>
-        /*<SafeAreaView style={{ flex: 1 }}>
-            <CustomHeader title="Profile" isHome={true} navigation={navigation} />
-            <Text style={styles.text}> Profile page </Text>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => navigation.navigate('AboutDetails')}
-                >
-                    <Text style={styles.buttonText}> Go to About Details </Text>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>*/
     )
 }
 
