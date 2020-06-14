@@ -1,69 +1,113 @@
-import React, {useState, useEffect} from "react";
-import { StyleSheet, View, Text, Image, Button, Linking } from "react-native"
+import React, { useState, useEffect, useRef } from "react";
+import { StyleSheet, View, Text, Image, Button, Dimensions } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AddPhoto from "../assets/import-photo.png";
-
+import swapCamera from '../assets/rotate-camera.png';
 import ImagePicker from "expo-image-picker";
+
+import { Camera } from "expo-camera";
 
 //import * as Permissions from 'expo-permissions';
 import Permissions from 'expo';
 import { CONTACTS } from "expo-permissions";
 
+
+const { width, height } = Dimensions.get('window');
+
 export default function EditProfileScreen({ navigation }) {
     const [status, changeStatus] = useState(null)
-    const [imageSource, changeImageSource] = useState(ProfileImage)
+    //const [imageSource, changeImageSource] = useState(ProfileImage)
 
     let activities = ["Music", "Football", "Hiking"];
 
-  /*  const addPhoto = () => {
-        console.log('Clicked addPhoto!')
-    };
-*/
-    const addPhoto = async () => {
-        const { status } = await Permissions.takeSnapshotAsync(Permissions.CONTACTS);
+    const camRef = useRef(null);
+    const [cameraType, setType] = useState(Camera.Constants.Type.back);
+    const [hasPermission, setHasPermission] = useState(null);
+    const [capturedPhoto, setCapturedPhoto] = useState(ProfileImage);
 
-        changeStatus(status);
+    useEffect(() => {
+        (async () => {
+            const { status } = await Camera.requestPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
+    }, []);
 
-        if(statis !== 'granted'){
-            Linking.openURL('app-settings');
-            return;
+    if (hasPermission === null) {
+        return <View />;
+    }
+
+    if (hasPermission === false) {
+        return <Text>Access denied!</Text>
+    }
+
+    const takePicture = async () => {
+        if (camRef) {
+            const data = await camRef.current.takePictureAsync();
+            setCapturedPhoto(data.uri);
+            console.log(data);
         }
-
-        const { data } = await CONTACTS.getContactsAsync({ pageSize: 1});
-
-        console.log(data[0]);
     }
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-            <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
-            <View style={{ flex: 1, width: '90%' }}>
-                <View style={{ position: 'relative', width: 150, alignSelf: 'center'}}>
-                    <Image source={imageSource} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
-                    <View
-                        style={styles.addPhotoButton}>
-                        <TouchableOpacity
-                            onPress={addPhoto}>
-                            <Image source={AddPhoto} style={{ width: 30, height: 30 }} />
-                        </TouchableOpacity>
+            <Camera
+                style={{ width: width, height: height * 2 / 3 }}
+                type={cameraType}
+                ref={camRef}>
+                <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
+                <View style={{ flex: 1, width: '90%' }}>
+                    <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
+                        <Image source={{ uri: capturedPhoto}} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                        <View
+                            style={styles.addPhotoButton}>
+                            <TouchableOpacity
+
+                            >
+                                <Image source={AddPhoto} style={{ width: 30, height: 30 }} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Text style={styles.name}> User's name</Text>
+                    <Text style={styles.info}>Height: 180cm</Text>
+                    <Text style={styles.info}>Weight: 82kg</Text>
+                    <Text style={styles.miniHeader}>Interests:</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        {
+                            activities.map(activity => (
+                                <Text style={styles.activityItem} key={activity}>{activity}</Text>
+                            ))
+                        }
                     </View>
                 </View>
-                <Text style={styles.name}> User's name</Text>
-                <Text style={styles.info}>Height: 180cm</Text>
-                <Text style={styles.info}>Weight: 82kg</Text>
-                <Text style={styles.miniHeader}>Interests:</Text>
-                <View style={{ flexDirection: 'row' }}>
-                    {
-                        activities.map(activity => (
-                            <Text style={styles.activityItem} key={activity}>{activity}</Text>
-                        ))
-                    }
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-around' }}>
+                    <TouchableOpacity
+                        style={{ height: 80, width: 80, bottom: 20, left: 20, justifyContent: 'center' }}
+                        onPress={() => {
+                            setType(
+                                cameraType === Camera.Constants.Type.back
+                                    ? Camera.Constants.Type.front
+                                    : Camera.Constants.Type.back
+                            );
+                        }}>
+                        <View style={{ width: 40, height: 40, backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center' }}>
+                            <Image style={{ width: 30, height: 30 }} source={swapCamera}></Image>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', height: 80, width: 80, bottom: 20 }} onPress={takePicture}>
+                        {/* Botun za slikat sliku. Možda čak odvojit cilu kameru u zasebnu rutu, te sa botunom za slikat sliku ić na tu rutu, odakle se lako vratit? */}
+                        <View style={{ width: 40, height: 40, backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center' }}>
+                            <Image source={AddPhoto} style={{ height: 30, width: 30 }} />
+                        </View>
+                    </TouchableOpacity>
                 </View>
-            </View>
+            </Camera>
+
+
         </SafeAreaView>
     )
 }
