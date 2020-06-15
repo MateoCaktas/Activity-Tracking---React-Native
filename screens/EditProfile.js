@@ -15,7 +15,6 @@ import { Camera } from "expo-camera";
 import Permissions from 'expo';
 import { CONTACTS } from "expo-permissions";
 
-
 const { width, height } = Dimensions.get('window');
 
 export default function EditProfileScreen({ navigation }) {
@@ -99,7 +98,7 @@ export default function EditProfileScreen({ navigation }) {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', height: 80, width: 80, bottom: 20 }} onPress={takePicture}>
-                        {/* Botun za slikat sliku. Možda čak odvojit cilu kameru u zasebnu rutu, te sa botunom za slikat sliku ić na tu rutu, odakle se lako vratit? */}
+                        {/* Botun za slikat sliku. Možda čak odvojit cilu kameru u zasebnu rutu, te sa botunom za slikat sliku ić na tu rutu, odakle se lako vratit? POTREBAN REDUX */}
                         <View style={{ width: 40, height: 40, backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center' }}>
                             <Image source={AddPhoto} style={{ height: 30, width: 30 }} />
                         </View>

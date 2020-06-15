@@ -1,6 +1,8 @@
 {
   "expo": {
     "name": "activity-tracking-app",
+    "icon":"./assets/activities/watch-purple.png",
+    "version":"1.0.0",
     "slug": "activity-tracking-app",
     "platforms": [
       "ios",
@@ -23,6 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android":{
+      "package":"com.mateocaktas.activitytrackingapp",
+      "versionCode":1
     }
   }
 }

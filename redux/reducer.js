@@ -2,6 +2,7 @@ import userActivities from "../activities.json";
 import { GET_ACTIVITIES, ADD_ACTIVITY } from "./types";
 
 const initialState = {
+    userProfile: null,
     userActivities
 };
 
