@@ -21,7 +21,7 @@ export const persistedStore = persistStore(store)
 
 store.subscribe(()=> {
     store.getState();
-    console.log(store.getState());
+    //console.log(store.getState());
 });
 
 export default store;

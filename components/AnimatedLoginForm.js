@@ -110,7 +110,7 @@ export default function AnimatedLoginForm() {
 
     const navigateScreen = () => {
         if (buttonPressed === 'SIGN IN') {
-            navigation.navigate('HomeApp')
+            navigation.navigate('LoggedIn')
         } else {
             navigation.navigate('InitialPage')
         }
@@ -242,7 +242,7 @@ export default function AnimatedLoginForm() {
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.buttonLogin}
-                    onPress={() => navigation.navigate('HomeApp')}
+                    onPress={() => navigation.navigate('LoggedIn')}
                 >
                     <Text style={styles.buttonText}> Login </Text>
                 </TouchableOpacity>

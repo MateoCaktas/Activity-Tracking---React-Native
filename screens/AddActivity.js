@@ -63,8 +63,7 @@ export default function AddActivity({ navigation }) {
     const onChangeStartDate = (event, selectedDate) => {
         const currentDate = selectedDate || startDate;
         setShowStartDate(Platform.OS === 'ios');
-        changeStartDate(currentDate);
-        console.log(mode);
+        changeStartDate(currentDate);        
         if(mode === 'date'){
             changeEndDate(currentDate);
         }
@@ -73,9 +72,7 @@ export default function AddActivity({ navigation }) {
     const onChangeEndDate = (event, selectedDate) => {
         const currentDate = selectedDate || endDate;
         setShowEndDate(Platform.OS === 'ios');
-        console.log(mode);
-        changeEndDate(currentDate);
-        
+        changeEndDate(currentDate);        
     }
 
     return (

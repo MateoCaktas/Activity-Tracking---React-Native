@@ -26,7 +26,7 @@ export default function EditProfileScreen({ navigation }) {
     const camRef = useRef(null);
     const [cameraType, setType] = useState(Camera.Constants.Type.back);
     const [hasPermission, setHasPermission] = useState(null);
-    const [capturedPhoto, setCapturedPhoto] = useState(ProfileImage);
+    const [capturedPhoto, setCapturedPhoto] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -47,6 +47,8 @@ export default function EditProfileScreen({ navigation }) {
         if (camRef) {
             const data = await camRef.current.takePictureAsync();
             setCapturedPhoto(data.uri);
+            console.log(capturedPhoto);
+            console.log(typeof(capturedPhoto));
             console.log(data);
         }
     }
@@ -60,7 +62,7 @@ export default function EditProfileScreen({ navigation }) {
                 <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
                 <View style={{ flex: 1, width: '90%' }}>
                     <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
-                        <Image source={{ uri: capturedPhoto}} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                        <Image source={capturedPhoto ? { uri: capturedPhoto} : ProfileImage } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
                         <View
                             style={styles.addPhotoButton}>
                             <TouchableOpacity

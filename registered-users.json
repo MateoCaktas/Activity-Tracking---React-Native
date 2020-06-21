@@ -1,0 +1,20 @@
+[
+    {
+        "userName":"Ivan Ivić",
+        "email":"ivan@gmail.com",
+        "password":"ivan123"
+    },
+    {
+        "userName":"Marko Markić",
+        "email":"marko@gmail.com",
+        "password":"marko123"
+    },{
+        "userName":"Lovre Lovrić",
+        "email":"lovre@gmail.com",
+        "password":"lovre123"
+    },{
+        "userName":"Iva Ivić",
+        "email":"iva@gmail.com",
+        "password":"iva123"
+    }
+]

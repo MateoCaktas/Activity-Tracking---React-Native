@@ -1,14 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { TapGestureHandler } from "react-native-gesture-handler";
 import CustomHeader from "../navigation/CustomHeader";
+import { loginUser } from "../redux/actions";
+import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
 
-export default function Register({ navigation }) {
+function Login({ loggedIn }) {
+    const navigation = useNavigation();
+    const [email, changeEmail] = useState('');
+    const [password, changePassword] = useState('');
 
-    const LoginUser = () => {
-        navigation.navigate('HomeApp')
+    const login = async () => {
+        // Send email and password, get a response
+        /*setTimeout(() => {
+            loginUser(email, password)
+        }, 1000)*/
+
+        const logIn = await loginUser(email, password);
+           
+        if(loggedIn){
+            navigation.navigate('LoggedIn')
+        }
+        else if(!loggedIn) {
+            console.log('++++++++++++++++++++')
+        }
+        /*try {
+        await loginUser(myObject)
+        .then(() => {
+            if(loggedIn){
+                navigation.navigate('LoggedIn')
+            }
+            else {
+                console.log('WRONG EMAIL AND PASSWORD!');
+            }
+        })
+        } catch(err) {
+            console.log(err);
+        }*/
     }
 
     return (
@@ -23,6 +54,8 @@ export default function Register({ navigation }) {
                         placeholder="EMAIL"
                         style={styles.emailInput}
                         placeholderTextColor="purple"
+                        onChangeText={value => changeEmail(value)}
+                        value={email}
                     />
 
                     <Text style={{ marginTop: 30 }}>
@@ -32,9 +65,11 @@ export default function Register({ navigation }) {
                         placeholder="PASSWORD"
                         style={styles.emailInput}
                         placeholderTextColor="purple"
+                        onChangeText={value => changePassword(value)}
+                        value={password}
                     />
                     <TapGestureHandler
-                        onHandlerStateChange={LoginUser}>
+                        onHandlerStateChange={login}>
                         <View style={styles.loginButton}>
                             <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>LOG IN</Text>
                         </View>
@@ -44,6 +79,14 @@ export default function Register({ navigation }) {
         </TouchableWithoutFeedback>
     )
 }
+
+const mapStateToProps = (state) => ({
+    userProfile: state.userProfile,
+    loggedIn: state.loggedIn
+})
+
+export default connect(mapStateToProps)(Login);
+
 
 const styles = StyleSheet.create({
     container: {

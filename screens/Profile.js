@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
 
-export default function Profile({ navigation }) {
+import {  } from "../redux/actions";
+import { connect } from 'react-redux';
+import { useNavigation } from "@react-navigation/native";
+
+function Profile({ userProfile }) {
+    const navigation = useNavigation();
     let activities = ["Music","Football", "Hiking"];
+
+    useEffect(() => {
+        console.log('INSIDE USE EFFECT');
+        console.log(userProfile)
+    }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems:'center'}}>
             <CustomHeader title="Profile" isHome={true} navigation={navigation} />
             <View style={{flex:1,width: '90%'}}>
                 <Image source={ProfileImage} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
-                <Text style={styles.name}> User's name</Text>
+                <Text style={styles.name}> {userProfile.userName ? userProfile.userName : null}</Text>
+                <Text style={styles.info}>{userProfile.email}</Text>
                 <Text style={styles.info}>Height: 180cm</Text>
                 <Text style={styles.info}>Weight: 82kg</Text>
                 <Text style={styles.miniHeader}>Interests:</Text>
@@ -27,6 +38,14 @@ export default function Profile({ navigation }) {
         </SafeAreaView>
     )
 }
+
+
+const mapStateToProps = (state) => ({
+    userProfile: state.userProfile
+})
+
+export default connect(mapStateToProps)(Profile);
+
 
 const styles = StyleSheet.create({
     activityItem:{

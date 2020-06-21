@@ -25,6 +25,8 @@ import LogoutIcon from "../assets/DrawerMenu/logout-white.png";
 
 import AddActivity from "../screens/AddActivity";
 
+import { logout } from "../redux/actions";
+
 const StackHome = createStackNavigator();
 const StackProfile = createStackNavigator();
 const Container = createBottomTabNavigator();
@@ -32,6 +34,11 @@ const Container = createBottomTabNavigator();
 const navOptionHandler = () => ({
     headerShown: false
 })
+
+const logoutUser = (navigation) => {
+    logout();
+    navigation.navigate('InitialPage')
+}
 
 function HomeStack() {
     return (
@@ -79,7 +86,7 @@ function CustomDrawerContent(props) {
 
                 <TouchableOpacity
                     style={styles.menuOption}
-                    onPress={() => props.navigation.navigate('InitialPage')}
+                    onPress={() => logoutUser(props.navigation)}
                 >
                     <View style={styles.sideMenuIconContainer}>
                         <Image source={LogoutIcon} style={{...styles.sideMenuIcon , marginLeft:5}} />
@@ -143,7 +150,7 @@ export default function Navigator() {
     return (
         <NavigationContainer>
             <StackApp.Navigator initialRouteName="InitialPage">
-                <StackApp.Screen name="HomeApp" component={DrawerNavigator} options={navOptionHandler} />
+                <StackApp.Screen name="LoggedIn" component={DrawerNavigator} options={navOptionHandler} />
                 <StackApp.Screen name="InitialPage" component={InitialPage} options={navOptionHandler} />
                 <StackApp.Screen name="Login" component={LoginScreen} options={navOptionHandler} />
                 <StackApp.Screen name="Register" component={RegisterScreen} options={navOptionHandler} />
