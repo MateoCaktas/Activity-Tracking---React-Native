@@ -1,6 +1,15 @@
 import userActivities from "../activities.json";
-import { GET_ACTIVITIES, ADD_ACTIVITY, LOGIN_USER, GET_USER_INFO, LOGOUT_USER, REGISTER_USER } from "./types";
+import { 
+    GET_ACTIVITIES,
+    ADD_ACTIVITY,
+    LOGIN_USER,
+    GET_USER_INFO,
+    LOGOUT_USER,
+    REGISTER_USER,
+    EDIT_USER
+} from "./types";
 import RegisteredUsers from "../registered-users.json";
+import { editUser } from "./actions";
 
 const initialState = {
     userProfile: null,
@@ -52,11 +61,22 @@ export default function reducer(state = initialState, action){
             const AddedUser = {
                 email: payload.email, 
                 userName: payload.userName,
-                password: payload.password
+                password: payload.password,
+                capturedPhoto:null,
+                defaultImage:true
             }
             return {
                 ...state,
                 registeredUsers: [...state.registeredUsers, AddedUser]
+            }
+        case EDIT_USER:
+            const editedUser = payload;
+            console.log('INSIDE EDIT USER REDUCER')
+            console.log(editedUser);
+            let index = state.registeredUsers.findIndex(user => user.email === editedUser.email);
+            return {
+                ...state,
+                registeredUsers: state.registeredUsers.splice(index, 0, editedUser)
             }
         default:
             return state

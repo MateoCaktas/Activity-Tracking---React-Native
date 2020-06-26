@@ -2,19 +2,44 @@
     {
         "userName":"Ivan Ivić",
         "email":"ivan@gmail.com",
-        "password":"ivan123"
+        "password":"ivan123",
+        "capturedPhoto":null,
+        "defaultImage":true,
+        "height":"182",
+        "weight":"82"
     },
     {
         "userName":"Marko Markić",
         "email":"marko@gmail.com",
-        "password":"marko123"
+        "password":"marko123",
+        "capturedPhoto":null,
+        "defaultImage":true,
+        "height":"182",
+        "weight":"82"
     },{
         "userName":"Lovre Lovrić",
         "email":"lovre@gmail.com",
-        "password":"lovre123"
+        "password":"lovre123",
+        "capturedPhoto":null,
+        "defaultImage":true,
+        "height":"182",
+        "weight":"82"
     },{
         "userName":"Iva Ivić",
         "email":"iva@gmail.com",
-        "password":"iva123"
+        "password":"iva123",
+        "capturedPhoto":null,
+        "defaultImage":true,
+        "height":"167",
+        "weight":"62"
+    },
+    {
+        "userName":"B",
+        "email":"A",
+        "password":"C",
+        "capturedPhoto":null,
+        "defaultImage":true,
+        "height":"167",
+        "weight":"62"
     }
 ]

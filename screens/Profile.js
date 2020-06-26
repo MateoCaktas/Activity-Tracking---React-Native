@@ -21,11 +21,11 @@ function Profile({ userProfile }) {
         <SafeAreaView style={{ flex: 1, alignItems:'center'}}>
             <CustomHeader title="Profile" isHome={true} navigation={navigation} />
             <View style={{flex:1,width: '90%'}}>
-                <Image source={ProfileImage} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
                 <Text style={styles.name}> {userProfile.userName ? userProfile.userName : null}</Text>
                 <Text style={styles.info}>{userProfile.email}</Text>
-                <Text style={styles.info}>Height: 180cm</Text>
-                <Text style={styles.info}>Weight: 82kg</Text>
+                <Text style={styles.info}>Height: {userProfile.height}cm</Text>
+                <Text style={styles.info}>Weight: {userProfile.weight}kg</Text>
                 <Text style={styles.miniHeader}>Interests:</Text>
                 <View style={{flexDirection:'row'}}>
                 {

@@ -18,7 +18,7 @@ import RegisterScreen from "../screens/Register";
 import LoginScreen from "../screens/Login";
 import ActivityDetails from "../screens/ActivityDetails";
 import EditProfileScreen from "../screens/EditProfile";
-
+import CameraScreen from "../screens/Camera";
 import HomeIcon from "../assets/DrawerMenu/home-white.png";
 import EditProfileIcon from "../assets/DrawerMenu/edit-profile.png";
 import LogoutIcon from "../assets/DrawerMenu/logout-white.png";
@@ -26,6 +26,7 @@ import LogoutIcon from "../assets/DrawerMenu/logout-white.png";
 import AddActivity from "../screens/AddActivity";
 
 import { logout } from "../redux/actions";
+import Camera from "../screens/Camera";
 
 const StackHome = createStackNavigator();
 const StackProfile = createStackNavigator();
@@ -156,6 +157,7 @@ export default function Navigator() {
                 <StackApp.Screen name="Register" component={RegisterScreen} options={navOptionHandler} />
                 <StackApp.Screen name="ActivityDetails" component={ActivityDetails} options={navOptionHandler} />
                 <StackApp.Screen name="AddActivity" component={AddActivity} options={navOptionHandler}/>
+                <StackApp.Screen name="CameraScreen" component={CameraScreen} options={navOptionHandler}/>
             </StackApp.Navigator>
         </NavigationContainer>
     )

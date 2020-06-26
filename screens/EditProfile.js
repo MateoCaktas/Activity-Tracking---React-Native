@@ -1,80 +1,79 @@
-import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, View, Text, Image, Button, Dimensions } from "react-native"
-import { TouchableOpacity } from "react-native-gesture-handler";
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, Image, Dimensions, Keyboard, TextInput, TouchableOpacity, TouchableWithoutFeedback } from "react-native"
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AddPhoto from "../assets/import-photo.png";
-import swapCamera from '../assets/rotate-camera.png';
-import ImagePicker from "expo-image-picker";
-
-import { Camera } from "expo-camera";
-
-//import * as Permissions from 'expo-permissions';
-import Permissions from 'expo';
-import { CONTACTS } from "expo-permissions";
-
+import { connect } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { editUser } from "../redux/actions";
 const { width, height } = Dimensions.get('window');
 
-export default function EditProfileScreen({ navigation }) {
-    const [status, changeStatus] = useState(null)
-    //const [imageSource, changeImageSource] = useState(ProfileImage)
-
+function EditProfileScreen({ userProfile }) {
+    const navigation = useNavigation();
+    const [userName, changeUserName] = useState(userProfile.userName);
+    const [height, changeHeight] = useState(userProfile.height)
+    const [weight, changeWeight] = useState(userProfile.weight)
     let activities = ["Music", "Football", "Hiking"];
 
-    const camRef = useRef(null);
-    const [cameraType, setType] = useState(Camera.Constants.Type.back);
-    const [hasPermission, setHasPermission] = useState(null);
-    const [capturedPhoto, setCapturedPhoto] = useState(null);
-
     useEffect(() => {
-        (async () => {
-            const { status } = await Camera.requestPermissionsAsync();
-            setHasPermission(status === 'granted');
-        })();
+        
     }, []);
 
-    if (hasPermission === null) {
-        return <View />;
-    }
-
-    if (hasPermission === false) {
-        return <Text>Access denied!</Text>
-    }
-
-    const takePicture = async () => {
-        if (camRef) {
-            const data = await camRef.current.takePictureAsync();
-            setCapturedPhoto(data.uri);
-            console.log(capturedPhoto);
-            console.log(typeof(capturedPhoto));
-            console.log(data);
+    const saveUser = () => {
+        const currentUser = {
+            userName,
+            email: userProfile.email,
+            capturedPhoto: userProfile.capturedPhoto,
+            height,
+            weight,
+            defaultImage: userProfile.defaultImage,
+            password: userProfile.password
         }
+
+        editUser(currentUser);
+        navigation.goBack('');
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-            <Camera
-                style={{ width: width, height: height * 2 / 3 }}
-                type={cameraType}
-                ref={camRef}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <SafeAreaView style={{flex: 1,  alignItems: 'center' }}>
                 <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
                 <View style={{ flex: 1, width: '90%' }}>
                     <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
-                        <Image source={capturedPhoto ? { uri: capturedPhoto} : ProfileImage } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                        <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}   } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
                         <View
                             style={styles.addPhotoButton}>
                             <TouchableOpacity
-
+                                onPress={() => navigation.navigate('CameraScreen')}
                             >
                                 <Image source={AddPhoto} style={{ width: 30, height: 30 }} />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.name}> User's name</Text>
-                    <Text style={styles.info}>Height: 180cm</Text>
-                    <Text style={styles.info}>Weight: 82kg</Text>
+                    
+                    <TextInput style={styles.name}
+                    onChangeText={(value) => {changeUserName(value); console.log(userName)}}
+                    value={userName}> 
+                    </TextInput>
+                    <View style={styles.info}>
+                        <Text style={{marginRight: 5, flex: 1}}>Height:</Text>
+                        <TextInput
+                        style={{flex:1,height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
+                        value={height}
+                        onChangeText={(value) => changeHeight(value)}
+                        ></TextInput>
+                        <Text>cm</Text>
+                    </View>
+                    <View style={styles.info}>
+                    <Text style={{marginRight: 0, flex: 1}}>Weight:</Text>
+                    <TextInput
+                        style={{flex:1,height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
+                        value={weight}
+                        onChangeText={(value) => changeWeight(value)}
+                        ></TextInput>
+                        <Text>kg</Text>
+                    </View>
                     <Text style={styles.miniHeader}>Interests:</Text>
                     <View style={{ flexDirection: 'row' }}>
                         {
@@ -85,33 +84,25 @@ export default function EditProfileScreen({ navigation }) {
                     </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-around' }}>
-                    <TouchableOpacity
-                        style={{ height: 80, width: 80, bottom: 20, left: 20, justifyContent: 'center' }}
-                        onPress={() => {
-                            setType(
-                                cameraType === Camera.Constants.Type.back
-                                    ? Camera.Constants.Type.front
-                                    : Camera.Constants.Type.back
-                            );
-                        }}>
-                        <View style={{ width: 40, height: 40, backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center' }}>
-                            <Image style={{ width: 30, height: 30 }} source={swapCamera}></Image>
-                        </View>
+                <View style={styles.bottomButtons}>
+                    <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack('')}>
+                        <Text>Cancel</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', height: 80, width: 80, bottom: 20 }} onPress={takePicture}>
-                        {/* Botun za slikat sliku. Možda čak odvojit cilu kameru u zasebnu rutu, te sa botunom za slikat sliku ić na tu rutu, odakle se lako vratit? POTREBAN REDUX */}
-                        <View style={{ width: 40, height: 40, backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center' }}>
-                            <Image source={AddPhoto} style={{ height: 30, width: 30 }} />
-                        </View>
+                    <TouchableOpacity style={styles.saveButton} onPress={() => saveUser()}>
+                        <Text style={{color:'white'}}>Save</Text>
                     </TouchableOpacity>
                 </View>
-            </Camera>
-
-
-        </SafeAreaView>
+            </SafeAreaView>
+        </TouchableWithoutFeedback>
     )
 }
+
+const mapStateToProps = (state) => ({
+    userActivities: state.userActivities,
+    userProfile: state.userProfile
+})
+
+export default connect(mapStateToProps)(EditProfileScreen);
 
 const styles = StyleSheet.create({
     addPhotoButton: {
@@ -135,11 +126,18 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     info: {
+        display:'flex',
+        flexDirection: 'row',
+        height: 50,
+        alignItems: 'center',
         marginTop: 25,
         fontSize: 15
     },
     name: {
-        alignSelf: 'center', fontSize: 25, marginTop: 20
+        alignSelf: 'center', fontSize: 25, marginTop: 20,
+        width: '60%',
+        height: 50,
+        backgroundColor:'white'
     },
     text: {
         alignSelf: 'center',
@@ -161,5 +159,27 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white'
+    },
+    bottomButtons: {
+        display:'flex',
+        flexDirection:'row',
+        width: '100%',
+        justifyContent:'space-around',
+        marginBottom: 20
+    },
+    cancelButton: {
+        height: 50, width: 140,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:50,
+        borderWidth: 2,
+        borderColor: 'gray'
+    },
+    saveButton: {
+        backgroundColor: 'purple',
+        height: 50, width: 140,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:50
     }
 })

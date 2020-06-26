@@ -1,5 +1,5 @@
 import store from "./store";
-import { ADD_ACTIVITY, LOGIN_USER, LOGOUT_USER, REGISTER_USER } from "./types";
+import { ADD_ACTIVITY, LOGIN_USER, LOGOUT_USER, REGISTER_USER, EDIT_USER } from "./types";
 
 export const addActivity = (Activity) => {
     store.dispatch({
@@ -26,5 +26,11 @@ export const registerUser = (email, userName, password) => {
     store.dispatch({
         type:REGISTER_USER,
         payload: UserCredentials
+    })
+}
+export const editUser = (User) => {
+    store.dispatch({
+        type:EDIT_USER,
+        payload:User
     })
 }
