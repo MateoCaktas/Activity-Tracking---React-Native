@@ -12,12 +12,24 @@ const { width, height } = Dimensions.get('window');
 function EditProfileScreen({ userProfile }) {
     const navigation = useNavigation();
     const [userName, changeUserName] = useState(userProfile.userName);
-    const [height, changeHeight] = useState(userProfile.height)
-    const [weight, changeWeight] = useState(userProfile.weight)
+    const [height, changeHeight] = useState('0')
+    const [weight, changeWeight] = useState('0')
+    
+    const [isFocused, changeFocus] = useState(false);
     let activities = ["Music", "Football", "Hiking"];
 
     useEffect(() => {
-        
+        const focus = navigation.addListener('focus', () => {
+            changeFocus(true);
+            if(userProfile.height)
+                changeHeight(userProfile.height);
+            if(userProfile.weight)
+                changeWeight(userProfile.weight);
+         })
+ 
+         const blur = navigation.addListener('blur', () => {
+             changeFocus(false);
+         })
     }, []);
 
     const saveUser = () => {
@@ -41,7 +53,7 @@ function EditProfileScreen({ userProfile }) {
                 <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
                 <View style={{ flex: 1, width: '90%' }}>
                     <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
-                        <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}   } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                        <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}   } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40, borderRadius: 25 }} />
                         <View
                             style={styles.addPhotoButton}>
                             <TouchableOpacity
@@ -59,19 +71,22 @@ function EditProfileScreen({ userProfile }) {
                     <View style={styles.info}>
                         <Text style={{marginRight: 5, flex: 1}}>Height:</Text>
                         <TextInput
-                        style={{flex:1,height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
+                        style={{flex:1, paddingLeft: 15, height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
                         value={height}
                         onChangeText={(value) => changeHeight(value)}
-                        ></TextInput>
+                        >
+
+                        </TextInput>
                         <Text>cm</Text>
                     </View>
                     <View style={styles.info}>
-                    <Text style={{marginRight: 0, flex: 1}}>Weight:</Text>
-                    <TextInput
-                        style={{flex:1,height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
-                        value={weight}
-                        onChangeText={(value) => changeWeight(value)}
-                        ></TextInput>
+                        <Text style={{marginRight: 0, flex: 1}}>Weight:</Text>
+                        <TextInput
+                            style={{flex:1, paddingLeft: 15, height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
+                            value={weight}
+                            onChangeText={(value) => changeWeight(value)}
+                        >  
+                        </TextInput>
                         <Text>kg</Text>
                     </View>
                     <Text style={styles.miniHeader}>Interests:</Text>
@@ -168,16 +183,19 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     cancelButton: {
-        height: 50, width: 140,
+        height: 50,
+        width: 140,
         justifyContent:'center',
         alignItems:'center',
         borderRadius:50,
         borderWidth: 2,
-        borderColor: 'gray'
+        borderColor: 'gray',
+        backgroundColor: 'white'
     },
     saveButton: {
         backgroundColor: 'purple',
-        height: 50, width: 140,
+        height: 50,
+        width: 140,
         justifyContent:'center',
         alignItems:'center',
         borderRadius:50

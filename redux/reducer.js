@@ -9,7 +9,6 @@ import {
     EDIT_USER
 } from "./types";
 import RegisteredUsers from "../registered-users.json";
-import { editUser } from "./actions";
 
 const initialState = {
     userProfile: null,
@@ -76,7 +75,8 @@ export default function reducer(state = initialState, action){
             let index = state.registeredUsers.findIndex(user => user.email === editedUser.email);
             return {
                 ...state,
-                registeredUsers: state.registeredUsers.splice(index, 0, editedUser)
+                registeredUsers: state.registeredUsers.splice(index, 0, editedUser),
+                userProfile: editedUser
             }
         default:
             return state

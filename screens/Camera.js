@@ -38,7 +38,7 @@ function CameraScreen({user}) {
             user.capturedPhoto = data.uri;
             user.defaultImage = false;
             editUser(user);
-            navigation.navigate('LoggedIn');
+            navigation.goBack('');
         }
     }
     
