@@ -6,7 +6,92 @@
         "capturedPhoto":null,
         "defaultImage":true,
         "height":"182",
-        "weight":"82"
+        "timesEdited": 0,
+        "weight":"82",
+        "interests":["Biking", "Running"],
+        "activities": [
+            {
+                "title":"First Item",
+                "number":123,
+                "id":1,
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music",
+                "additionalInfo":[
+                    {
+                        "key":"Additional info 1",
+                        "value":67
+                    },
+                    {
+                        "key":"Additional info 2",
+                        "value":92
+                    }
+                ]
+            },
+            {
+                "title":"Second Item",
+                "number":234,
+                "id":2,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Sport"
+            },
+            {
+                "title":"Third Item",
+                "number":345,
+                "id":3,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fourth Item",
+                "number":456,
+                "id":4,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fifth Item",
+                "number":123,
+                "id":5,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Sixth Item",
+                "number":234,
+                "id":6,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Seventh Item",
+                "number":345,
+                "id":7,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Eighth Item",
+                "number":456,
+                "id":8,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            }
+        ]
     },
     {
         "userName":"Marko Markić",
@@ -15,7 +100,92 @@
         "capturedPhoto":null,
         "defaultImage":true,
         "height":"182",
-        "weight":"82"
+        "timesEdited": 0,
+        "weight":"82",        
+        "interests":["Music", "Running"],
+        "activities": [
+            {
+                "title":"First Item",
+                "number":123,
+                "id":1,
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music",
+                "additionalInfo":[
+                    {
+                        "key":"Additional info 1",
+                        "value":67
+                    },
+                    {
+                        "key":"Additional info 2",
+                        "value":92
+                    }
+                ]
+            },
+            {
+                "title":"Second Item",
+                "number":234,
+                "id":2,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Sport"
+            },
+            {
+                "title":"Third Item",
+                "number":345,
+                "id":3,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fourth Item",
+                "number":456,
+                "id":4,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fifth Item",
+                "number":123,
+                "id":5,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Sixth Item",
+                "number":234,
+                "id":6,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Seventh Item",
+                "number":345,
+                "id":7,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Eighth Item",
+                "number":456,
+                "id":8,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            }
+        ]
     },{
         "userName":"Lovre Lovrić",
         "email":"lovre@gmail.com",
@@ -23,7 +193,92 @@
         "capturedPhoto":null,
         "defaultImage":true,
         "height":"182",
-        "weight":"82"
+        "weight":"82",
+        "timesEdited": 0,
+        "interests":["Biking", "Running"],
+        "activities": [
+            {
+                "title":"First Item",
+                "number":123,
+                "id":1,
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music",
+                "additionalInfo":[
+                    {
+                        "key":"Additional info 1",
+                        "value":67
+                    },
+                    {
+                        "key":"Additional info 2",
+                        "value":92
+                    }
+                ]
+            },
+            {
+                "title":"Second Item",
+                "number":234,
+                "id":2,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Sport"
+            },
+            {
+                "title":"Third Item",
+                "number":345,
+                "id":3,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fourth Item",
+                "number":456,
+                "id":4,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fifth Item",
+                "number":123,
+                "id":5,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Sixth Item",
+                "number":234,
+                "id":6,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Seventh Item",
+                "number":345,
+                "id":7,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Eighth Item",
+                "number":456,
+                "id":8,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            }
+        ]
     },{
         "userName":"Iva Ivić",
         "email":"iva@gmail.com",
@@ -31,7 +286,92 @@
         "capturedPhoto":null,
         "defaultImage":true,
         "height":"167",
-        "weight":"62"
+        "weight":"62",
+        "timesEdited": 0,
+        "interests":["Biking", "Running"],
+        "activities": [
+            {
+                "title":"First Item",
+                "number":123,
+                "id":1,
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music",
+                "additionalInfo":[
+                    {
+                        "key":"Additional info 1",
+                        "value":67
+                    },
+                    {
+                        "key":"Additional info 2",
+                        "value":92
+                    }
+                ]
+            },
+            {
+                "title":"Second Item",
+                "number":234,
+                "id":2,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Sport"
+            },
+            {
+                "title":"Third Item",
+                "number":345,
+                "id":3,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fourth Item",
+                "number":456,
+                "id":4,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fifth Item",
+                "number":123,
+                "id":5,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Sixth Item",
+                "number":234,
+                "id":6,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Seventh Item",
+                "number":345,
+                "id":7,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Eighth Item",
+                "number":456,
+                "id":8,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            }
+        ]
     },
     {
         "userName":"B",
@@ -40,6 +380,91 @@
         "capturedPhoto":null,
         "defaultImage":true,
         "height":"167",
-        "weight":"62"
+        "weight":"62",
+        "timesEdited": 0,
+        "interests":["Biking", "Running"],
+        "activities": [
+            {
+                "title":"First Item",
+                "number":123,
+                "id":1,
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music",
+                "additionalInfo":[
+                    {
+                        "key":"Additional info 1",
+                        "value":67
+                    },
+                    {
+                        "key":"Additional info 2",
+                        "value":92
+                    }
+                ]
+            },
+            {
+                "title":"Second Item",
+                "number":234,
+                "id":2,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Sport"
+            },
+            {
+                "title":"Third Item",
+                "number":345,
+                "id":3,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fourth Item",
+                "number":456,
+                "id":4,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Fifth Item",
+                "number":123,
+                "id":5,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Sixth Item",
+                "number":234,
+                "id":6,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Seventh Item",
+                "number":345,
+                "id":7,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            },
+            {
+                "title":"Eighth Item",
+                "number":456,
+                "id":8,
+                "date":"2020-05-03",
+                "startDate":"2020-05-06T16:48:44.082Z",
+                "endDate":"2020-05-06T18:48:44.082Z",
+                "activityType":"Music"
+            }
+        ]
     }
 ]

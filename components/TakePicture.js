@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
-import Activity from "./SingleActivity";
-import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native"
 
 

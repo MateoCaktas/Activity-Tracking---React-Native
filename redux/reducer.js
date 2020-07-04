@@ -36,7 +36,7 @@ export default function reducer(state = initialState, action){
             let currentLoginValue = false;
             const { email , password } = payload;
             state.registeredUsers.forEach(user => {
-                if(user.email === email && user.password === password){
+                if(user.email === email && user.password === password && email && password){
                     currentUser = user;
                     currentLoginValue = true;
                 } 
@@ -62,7 +62,9 @@ export default function reducer(state = initialState, action){
                 userName: payload.userName,
                 password: payload.password,
                 capturedPhoto:null,
-                defaultImage:true
+                defaultImage:true,
+                interests:[],
+                activities:[]
             }
             return {
                 ...state,

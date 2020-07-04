@@ -65,6 +65,7 @@ function Login({ loggedIn }) {
                         placeholder="PASSWORD"
                         style={styles.emailInput}
                         placeholderTextColor="purple"
+                        secureTextEntry={true}
                         onChangeText={value => changePassword(value)}
                         value={password}
                     />

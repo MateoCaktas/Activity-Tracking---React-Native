@@ -4,42 +4,40 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
 
-import {  } from "../redux/actions";
 import { connect } from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import { getUser } from "../redux/actions";
 
 function Profile({ userProfile }) {
     const navigation = useNavigation();
-    let activities = ["Music","Football", "Hiking"];
+    const [interests, changeInterests ] = useState(userProfile.interests);
     const [isFocused, changeFocus] = useState(false);
 
     useEffect(() => {
         const focus = navigation.addListener('focus', () => {
            changeFocus(true);
+
+           changeInterests(userProfile.interests);
         })
 
         const blur = navigation.addListener('blur', () => {
             changeFocus(false);
         })
-        console.log('INSIDE USE EFFECT');
-        console.log(userProfile)
     }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems:'center'}}>
             <CustomHeader title="Profile" isHome={true} navigation={navigation} />
             <View style={{flex:1,width: '90%'}}>
-                <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40 }} />
+                <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40, borderRadius: 25 }} />
                 <Text style={styles.name}> {userProfile.userName ? userProfile.userName : null}</Text>
                 <Text style={styles.info}>Email: {userProfile.email}</Text>
                 <Text style={styles.info}>Height: {userProfile.height}cm</Text>
                 <Text style={styles.info}>Weight: {userProfile.weight}kg</Text>
                 <Text style={styles.miniHeader}>Interests:</Text>
-                <View style={{flexDirection:'row'}}>
+                <View>
                 {
-                    activities.map(activity => (
-                        <Text style={styles.activityItem} key={activity}>{activity}</Text>
+                    interests.map(interest => (
+                        <Text style={styles.interestItem} key={interest}>{interest}</Text>
                     ))
                 }
                 </View>
@@ -47,7 +45,6 @@ function Profile({ userProfile }) {
         </SafeAreaView>
     )
 }
-
 
 const mapStateToProps = (state) => ({
     userProfile: state.userProfile
@@ -57,7 +54,7 @@ export default connect(mapStateToProps)(Profile);
 
 
 const styles = StyleSheet.create({
-    activityItem:{
+    interestItem: {        
         marginTop: 10,
         marginHorizontal: 10
     },

@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useNavigation } from "react";
 import { StyleSheet, View, Image, ScrollView, TouchableOpacity, Text } from "react-native"
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from "@react-navigation/stack"
-
 import HomeScreen from "../screens/Home";
 import ProfileScreen from "../screens/Profile";
-
 import HomeDetails from "../screens/HomeDetails"
 import AboutDetails from "../screens/AboutDetails";
-
 import InitialPage from "../screens/InitialPage";
 import RegisterScreen from "../screens/Register";
 import LoginScreen from "../screens/Login";
@@ -22,11 +18,11 @@ import CameraScreen from "../screens/Camera";
 import HomeIcon from "../assets/DrawerMenu/home-white.png";
 import EditProfileIcon from "../assets/DrawerMenu/edit-profile.png";
 import LogoutIcon from "../assets/DrawerMenu/logout-white.png";
-
 import AddActivity from "../screens/AddActivity";
-
+import { connect } from "react-redux";
 import { logout } from "../redux/actions";
-import Camera from "../screens/Camera";
+
+import ProfileImage from '../assets/DrawerMenu/user-profile-white.png';
 
 const StackHome = createStackNavigator();
 const StackProfile = createStackNavigator();
@@ -62,10 +58,7 @@ function ProfileStack() {
 function CustomDrawerContent(props) {
     return (
         <SafeAreaView style={styles.menuContainer}>
-            <View style={styles.userImageContainer}>
-                <Image source={require('../assets/DrawerMenu/user-profile-white.png')} style={styles.userImage} />
-            </View>
-            <ScrollView style={{ marginLeft: 20 }}>
+            <ScrollView style={{ marginLeft: 20, marginTop: 100 }}>
                 <TouchableOpacity
                     style={styles.menuOption}
                     onPress={() => props.navigation.navigate('StartPage')}
@@ -163,6 +156,7 @@ export default function Navigator() {
     )
 }
 
+
 const styles = StyleSheet.create({
     menuContainer: {
         flex: 1,
@@ -184,8 +178,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginTop: 15,
-        marginBottom: 15
+        marginTop: 25,
+        marginBottom: 25
     },
     sideMenuIconContainer:{
         alignSelf:'center',

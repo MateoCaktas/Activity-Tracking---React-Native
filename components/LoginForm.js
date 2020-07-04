@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground, Dimen
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from "@react-navigation/native";
 
-import { TapGestureHandler, State } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get('window');
 
 import LoginHeader from "../components/LoginHeader";
@@ -13,9 +12,24 @@ export default function LoginForm() {
 
     return (       
         <SafeAreaView style={{ flex: 1 }}>
-            <LoginHeader />
+            {/*<LoginHeader />*/}
+            <ImageBackground source={require('../assets/background-wallpaper.jpg')}
+                        style={{ flex: 1, height: height*1.1, width: width, justifyContent: 'center', alignItems: 'center' }}>
+
+            </ImageBackground>
+            <Text style={{color:'white', fontSize: 25, fontWeight:'bold', alignSelf:'center',}}> Activity tracking app</Text>
             <View style={styles.container}>
+                <TouchableOpacity 
+                style={{...styles.button, width: '80%'}} 
+                onPress={() => navigation.navigate('Login')}>
+                    <Text style={{ color: 'purple', fontSize: 20, fontWeight: 'bold' }}> SIGN IN</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
+                style={{...styles.button, backgroundColor: 'purple', width: '80%'}}
+                onPress={() => navigation.navigate('Register')}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}> REGISTER</Text>
+                </TouchableOpacity>
+                {/*<TouchableOpacity
                     style={styles.buttonLogin}
                     onPress={() => navigation.navigate('Login')}
                 >
@@ -27,7 +41,7 @@ export default function LoginForm() {
                     onPress={() => navigation.navigate('Register')}
                 >
                     <Text style={styles.buttonRegisterText}> Register </Text>
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
             </View>
         </SafeAreaView>
     )
@@ -89,7 +103,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     buttonLogin: {
         backgroundColor: 'purple',

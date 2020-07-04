@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Image, Dimensions, Keyboard, TextInput, TouchableOpacity, TouchableWithoutFeedback } from "react-native"
+import { ScrollView } from 'react-native-gesture-handler';
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,24 +13,29 @@ const { width, height } = Dimensions.get('window');
 function EditProfileScreen({ userProfile }) {
     const navigation = useNavigation();
     const [userName, changeUserName] = useState(userProfile.userName);
-    const [height, changeHeight] = useState('0')
-    const [weight, changeWeight] = useState('0')
-    
+    const [height, changeHeight] = useState(userProfile.height)
+    const [weight, changeWeight] = useState(userProfile.weight)
+    const [interests, changeInterests] = useState(userProfile.interests)
+    const [changed, changeChanged] = useState(userProfile.changed);
+
     const [isFocused, changeFocus] = useState(false);
-    let activities = ["Music", "Football", "Hiking"];
+
+    const [newInterest, changeInterest] = useState('');
 
     useEffect(() => {
         const focus = navigation.addListener('focus', () => {
             changeFocus(true);
-            if(userProfile.height)
+            /*if (userProfile.height)
                 changeHeight(userProfile.height);
-            if(userProfile.weight)
+            if (userProfile.weight)
                 changeWeight(userProfile.weight);
-         })
- 
-         const blur = navigation.addListener('blur', () => {
-             changeFocus(false);
-         })
+            if(userProfile.interests)
+                changeInterests(userProfile.interests)*/
+        })
+
+        const blur = navigation.addListener('blur', () => {
+            changeFocus(false);
+        })
     }, []);
 
     const saveUser = () => {
@@ -40,80 +46,112 @@ function EditProfileScreen({ userProfile }) {
             height,
             weight,
             defaultImage: userProfile.defaultImage,
-            password: userProfile.password
+            password: userProfile.password,
+            interests,
+            activities: userProfile.activities,
+            timesEdited: userProfile.timesEdited++
         }
+
+        console.log(interests);
 
         editUser(currentUser);
         navigation.goBack('');
     }
 
+    const AddInterest = (value) => {
+        changeInterests(interests => [...interests, value]);
+        changeInterest('');
+    }
+
+    const RemoveInterest = value => {
+        changeInterests(interests.filter(interest => interest != value))
+    }
+
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <SafeAreaView style={{flex: 1,  alignItems: 'center' }}>
+            <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
                 <CustomHeader title="Edit profile" isHome={true} navigation={navigation} />
-                <View style={{ flex: 1, width: '90%' }}>
-                    <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
-                        <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto}   } style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 40, borderRadius: 25 }} />
-                        <View
-                            style={styles.addPhotoButton}>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('CameraScreen')}
-                            >
-                                <Image source={AddPhoto} style={{ width: 30, height: 30 }} />
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flex: 1, width: '95%' }}>
+                        <View style={{ flex: 1 }}>
+                            <View style={{ position: 'relative', width: 150, alignSelf: 'center' }}>
+                                <Image source={userProfile.defaultImage ? ProfileImage : { uri: userProfile.capturedPhoto }} style={{ width: 150, height: 150, alignSelf: 'center', marginTop: 20, borderRadius: 25 }} />
+                                <View
+                                    style={styles.addPhotoButton}>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('CameraScreen')}
+                                    >
+                                        <Image source={AddPhoto} style={{ width: 30, height: 30 }} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+
+                            <TextInput style={styles.name}
+                                onChangeText={(value) => { changeUserName(value); console.log(userName) }}
+                                value={userName}>
+                            </TextInput>
+                            <View style={styles.info}>
+                                <Text style={{ marginRight: 5, flex: 1 }}>Height:</Text>
+                                <TextInput
+                                    style={{ flex: 1, paddingLeft: 15, height: 35, backgroundColor: 'white', borderColor: 'purple', borderWidth: 1 }}
+                                    value={height}
+                                    onChangeText={(value) => changeHeight(value)}
+                                >
+
+                                </TextInput>
+                                <Text>cm</Text>
+                            </View>
+                            <View style={styles.info}>
+                                <Text style={{ marginRight: 0, flex: 1 }}>Weight:</Text>
+                                <TextInput
+                                    style={{ flex: 1, paddingLeft: 15, height: 35, backgroundColor: 'white', borderColor: 'purple', borderWidth: 1 }}
+                                    value={weight}
+                                    onChangeText={(value) => changeWeight(value)}
+                                >
+                                </TextInput>
+                                <Text>kg</Text>
+                            </View>
+                            <Text style={styles.miniHeader}>Interests:</Text>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
+                                <TextInput style={{ width: 150, paddingLeft: 5, borderWidth: 2, borderColor: 'black', height: 40 }}
+                                    onChangeText={text => changeInterest(text)} value={newInterest}></TextInput>
+                                <TouchableOpacity
+                                    style={{ marginLeft: 10, width: 100, borderWidth: 2, backgroundColor: 'green', borderColor: 'green', borderRadius: 10, height: 40, justifyContent: 'center', alignItems: 'center' }}
+                                    onPress={() => AddInterest(newInterest)}>
+                                    <Text style={{ color: 'white' }}>Add Interest</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{}}>
+                                {
+                                    interests.map(interest => (
+                                        <View style={styles.interestItem} key={interest}>
+                                            <Text>{interest}</Text>
+                                            <TouchableOpacity onPress={() => RemoveInterest(interest)}>
+                                                <Text style={styles.deleteButton}>X</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </View>
+
+                        <View style={styles.bottomButtons}>
+                            <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack('')}>
+                                <Text>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.saveButton} onPress={() => saveUser()}>
+                                <Text style={{ color: 'white' }}>Save</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    
-                    <TextInput style={styles.name}
-                    onChangeText={(value) => {changeUserName(value); console.log(userName)}}
-                    value={userName}> 
-                    </TextInput>
-                    <View style={styles.info}>
-                        <Text style={{marginRight: 5, flex: 1}}>Height:</Text>
-                        <TextInput
-                        style={{flex:1, paddingLeft: 15, height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
-                        value={height}
-                        onChangeText={(value) => changeHeight(value)}
-                        >
-
-                        </TextInput>
-                        <Text>cm</Text>
-                    </View>
-                    <View style={styles.info}>
-                        <Text style={{marginRight: 0, flex: 1}}>Weight:</Text>
-                        <TextInput
-                            style={{flex:1, paddingLeft: 15, height:35, backgroundColor: 'white', borderColor:'purple', borderWidth: 1}}
-                            value={weight}
-                            onChangeText={(value) => changeWeight(value)}
-                        >  
-                        </TextInput>
-                        <Text>kg</Text>
-                    </View>
-                    <Text style={styles.miniHeader}>Interests:</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        {
-                            activities.map(activity => (
-                                <Text style={styles.activityItem} key={activity}>{activity}</Text>
-                            ))
-                        }
-                    </View>
-                </View>
-
-                <View style={styles.bottomButtons}>
-                    <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack('')}>
-                        <Text>Cancel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.saveButton} onPress={() => saveUser()}>
-                        <Text style={{color:'white'}}>Save</Text>
-                    </TouchableOpacity>
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </TouchableWithoutFeedback>
     )
 }
 
 const mapStateToProps = (state) => ({
-    userActivities: state.userActivities,
+    //userActivities: state.userActivities,
     userProfile: state.userProfile
 })
 
@@ -132,16 +170,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    activityItem: {
-        marginTop: 10,
+    interestItem: {
+        flexDirection: 'row',
+        marginTop: 15,
         marginHorizontal: 10
     },
     miniHeader: {
-        fontSize: 20,
-        marginTop: 30
+        fontSize: 20
+    },
+    deleteButton: {
+        backgroundColor: 'red',
+        color: 'white',
+        width: 20,
+        height: 20,
+        borderRadius: 5,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginLeft: 10
     },
     info: {
-        display:'flex',
+        display: 'flex',
         flexDirection: 'row',
         height: 50,
         alignItems: 'center',
@@ -152,7 +200,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center', fontSize: 25, marginTop: 20,
         width: '60%',
         height: 50,
-        backgroundColor:'white'
+        backgroundColor: 'white'
     },
     text: {
         alignSelf: 'center',
@@ -176,18 +224,20 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     bottomButtons: {
-        display:'flex',
-        flexDirection:'row',
+        marginTop: 20,
+        alignSelf: 'flex-end',
+        display: 'flex',
+        flexDirection: 'row',
         width: '100%',
-        justifyContent:'space-around',
+        justifyContent: 'space-around',
         marginBottom: 20
     },
     cancelButton: {
         height: 50,
         width: 140,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
         borderWidth: 2,
         borderColor: 'gray',
         backgroundColor: 'white'
@@ -196,8 +246,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'purple',
         height: 50,
         width: 140,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:50
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50
     }
 })
