@@ -1,6 +1,6 @@
 [
     {
-        "title":"First Item",
+        "title":"Played Guitar",
         "number":123,
         "id":1,
         "startDate":"2020-05-06T16:48:44.082Z",
@@ -8,76 +8,118 @@
         "activityType":"Music",
         "additionalInfo":[
             {
-                "key":"Additional info 1",
-                "value":67
-            },
-            {
-                "key":"Additional info 2",
-                "value":92
+                "key":"Playing guitar",
+                "value":"I'm getting good at playing guitar."
             }
         ]
     },
     {
-        "title":"Second Item",
+        "title":"Football",
         "number":234,
         "id":2,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Sport"
+        "startDate":"2020-05-05T16:48:44.082Z",
+        "endDate":"2020-05-05T18:48:44.082Z",
+        "activityType":"Sport",
+        "additionalInfo":[
+            {
+                "key":"Playing sports",
+                "value":"I'm not usually the type of person to play sport. Nonetheless, today I enjoyed playing football with my friends."
+            }
+        ]
     },
     {
-        "title":"Third Item",
+        "title":"Played Piano",
         "number":345,
         "id":3,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-05-04T16:48:44.082Z",
+        "endDate":"2020-05-04T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"Playing the piano",
+                "value":"I really enjoy playing piano."
+            }
+        ]
     },
     {
-        "title":"Fourth Item",
+        "title":"Singing",
         "number":456,
         "id":4,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-05-03T16:48:44.082Z",
+        "endDate":"2020-05-03T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"Singing",
+                "value":"I'm not a very good singer. Today was a good practice."
+            }
+        ]
     },
     {
-        "title":"Fifth Item",
+        "title":"Played Piano",
         "number":123,
         "id":5,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-05-02T16:48:44.082Z",
+        "endDate":"2020-05-02T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"Playing piano",
+                "value":"I really like the piano."
+            }
+        ]
     },
     {
-        "title":"Sixth Item",
+        "title":"Played Piano",
         "number":234,
         "id":6,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-05-01T16:48:44.082Z",
+        "endDate":"2020-05-01T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"Playing piano",
+                "value":"I really like the piano."
+            }
+        ]
     },
     {
-        "title":"Seventh Item",
+        "title":"Played Guitar",
         "number":345,
         "id":7,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-04-30T16:48:44.082Z",
+        "endDate":"2020-04-30T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"Playing guitar",
+                "value":"Learning how to play guitar."
+            },
+            {
+                "key":"Practice",
+                "value":"This has been a good practice."
+            }
+        ]
     },
     {
-        "title":"Eighth Item",
+        "title":"Singing",
         "number":456,
         "id":8,
         "date":"2020-05-03",
-        "startDate":"2020-05-06T16:48:44.082Z",
-        "endDate":"2020-05-06T18:48:44.082Z",
-        "activityType":"Music"
+        "startDate":"2020-04-29T16:48:44.082Z",
+        "endDate":"2020-04-29T18:48:44.082Z",
+        "activityType":"Music",
+        "additionalInfo":[
+            {
+                "key":"I was singing",
+                "value":"I'm not a very good singer. Today was a good practice."
+            }
+        ]
     }
 ]

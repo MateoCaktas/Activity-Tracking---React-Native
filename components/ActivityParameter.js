@@ -5,7 +5,7 @@ export default function ActivityParameter({ props }) {
     let { value, key } = props;
     return (
         <View style={styles.container}>
-            <Text>{key}</Text>
+            <Text style={{fontWeight:'bold'}}>{key}</Text>
             <Text>{value}</Text>
         </View>
     )

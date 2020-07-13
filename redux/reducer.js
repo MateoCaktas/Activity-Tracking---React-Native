@@ -25,8 +25,18 @@ export default function reducer(state = initialState, action){
                 ...state
             }
         case ADD_ACTIVITY:
-            let newActivity = {};
-            newActivity = payload;            
+            const { activityType, title, startDate, endDate, id, activityDescriptionTitle, activityDescription } = payload;
+            let newActivity = { 
+                activityType,
+                title,
+                startDate,
+                endDate,
+                id,
+                additionalInfo: [{}]
+        };
+            newActivity.additionalInfo[0].key = activityDescriptionTitle;
+            newActivity.additionalInfo[0].value = activityDescription;
+                                    
             return{
                 ...state,
                 userActivities:[newActivity, ...state.userActivities]

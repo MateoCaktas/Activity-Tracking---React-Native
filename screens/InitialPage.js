@@ -4,8 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import LoginHeader from '../components/LoginHeader';
 import { AppLoading } from 'expo';
 import { Asset } from "expo-asset";
-
-import AnimatedLoginForm from "../components/AnimatedLoginForm";
 import LoginForm from "../components/LoginForm";
 
 function cacheImages(images) {

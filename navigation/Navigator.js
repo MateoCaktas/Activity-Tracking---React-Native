@@ -7,8 +7,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from "@react-navigation/stack"
 import HomeScreen from "../screens/Home";
 import ProfileScreen from "../screens/Profile";
-import HomeDetails from "../screens/HomeDetails"
-import AboutDetails from "../screens/AboutDetails";
 import InitialPage from "../screens/InitialPage";
 import RegisterScreen from "../screens/Register";
 import LoginScreen from "../screens/Login";
@@ -41,7 +39,6 @@ function HomeStack() {
     return (
         <StackHome.Navigator initialRouteName="Home">
             <StackHome.Screen name="Home" component={HomeScreen} options={navOptionHandler} />
-            <StackHome.Screen name="HomeDetails" component={HomeDetails} options={navOptionHandler} />
         </StackHome.Navigator>
     )
 }
@@ -50,7 +47,6 @@ function ProfileStack() {
     return (
         <StackProfile.Navigator initialRouteName="Profile">
             <StackProfile.Screen name="Profile" component={ProfileScreen} options={navOptionHandler} />
-            <StackProfile.Screen name="AboutDetails" component={AboutDetails} options={navOptionHandler} />
         </StackProfile.Navigator>
     )
 }

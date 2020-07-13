@@ -9,7 +9,7 @@ function Activities({userActivities}) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}> Items </Text>
+            <Text style={styles.title}> Activities </Text>
             <View>
                 {
                 userActivities.map(activity=> (

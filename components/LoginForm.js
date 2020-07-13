@@ -5,17 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get('window');
 
-import LoginHeader from "../components/LoginHeader";
-
 export default function LoginForm() {
     const navigation = useNavigation();
 
     return (       
         <SafeAreaView style={{ flex: 1 }}>
-            {/*<LoginHeader />*/}
             <ImageBackground source={require('../assets/background-wallpaper.jpg')}
                         style={{ flex: 1, height: height*1.1, width: width, justifyContent: 'center', alignItems: 'center' }}>
-
             </ImageBackground>
             <Text style={{color:'white', fontSize: 25, fontWeight:'bold', alignSelf:'center',}}> Activity tracking app</Text>
             <View style={styles.container}>
@@ -29,19 +25,6 @@ export default function LoginForm() {
                 onPress={() => navigation.navigate('Register')}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}> REGISTER</Text>
                 </TouchableOpacity>
-                {/*<TouchableOpacity
-                    style={styles.buttonLogin}
-                    onPress={() => navigation.navigate('Login')}
-                >
-                    <Text style={styles.buttonText}> Login </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.buttonRegister}
-                    onPress={() => navigation.navigate('Register')}
-                >
-                    <Text style={styles.buttonRegisterText}> Register </Text>
-                </TouchableOpacity>*/}
             </View>
         </SafeAreaView>
     )

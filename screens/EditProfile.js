@@ -25,12 +25,6 @@ function EditProfileScreen({ userProfile }) {
     useEffect(() => {
         const focus = navigation.addListener('focus', () => {
             changeFocus(true);
-            /*if (userProfile.height)
-                changeHeight(userProfile.height);
-            if (userProfile.weight)
-                changeWeight(userProfile.weight);
-            if(userProfile.interests)
-                changeInterests(userProfile.interests)*/
         })
 
         const blur = navigation.addListener('blur', () => {

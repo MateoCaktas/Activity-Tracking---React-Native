@@ -17,6 +17,8 @@ import ClockIcon from "../assets/Activities/watch-purple.png";
 export default function AddActivity({ navigation }) {
     const [activityType, changeActivityType] = useState('Music');
     const [title, changeActivityTitle] = useState('');
+    const [activityDescriptionTitle, changeActivityDescriptionTitle] = useState('');
+    const [activityDescription, changeActivityDescription] = useState('');
     const [startDate, changeStartDate] = useState(new Date());
     const [endDate, changeEndDate] = useState(new Date());
     const [id, changeId] = useState(Math.floor(Math.random() * 1000000));
@@ -26,7 +28,7 @@ export default function AddActivity({ navigation }) {
     const [showEndDate, setShowEndDate] = useState(false);
 
     const add = () => {
-        addActivity({ activityType, title, startDate, endDate, id });
+        addActivity({ activityType, title, startDate, endDate, id, activityDescriptionTitle, activityDescription  });
         navigation.goBack('');
     }
 
@@ -90,6 +92,22 @@ export default function AddActivity({ navigation }) {
                     placeholder="Title"
                 />
                 
+                <Text style={{ width: '80%', color: 'gray' }}>Description title</Text>
+                <TextInput
+                    style={styles.titleInput}
+                    onChangeText={text => changeActivityDescriptionTitle(text)}
+                    value={activityDescriptionTitle}
+                    placeholder="Activity description"
+                />
+
+                <Text style={{ width: '80%', color: 'gray' }}>Description</Text>
+                <TextInput
+                    style={styles.titleInput}
+                    onChangeText={text => changeActivityDescription(text)}
+                    value={activityDescription}
+                    placeholder="Activity description text"
+                />
+
                 <Text style={{ width: '80%', color: 'gray' }}>Category</Text>
 
                 <View style={styles.pickerWrapper}>
@@ -117,7 +135,7 @@ export default function AddActivity({ navigation }) {
                     </TouchableOpacity>
 
                     <View style={{marginLeft: 15, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text>{startDate.getDate().toString()}-{startDate.getMonth().toString()}-{startDate.getFullYear().toString()}</Text>
+                        <Text>{startDate.getDate().toString()}-{(startDate.getMonth()+1).toString()}-{startDate.getFullYear().toString()}</Text>
                     </View>
                 </View>
 

@@ -10,7 +10,7 @@ import { FAB } from "react-native-paper";
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
-function Home({ userActivities }) {
+function Home() {
     const navigation = useNavigation();
     
     return (
@@ -28,12 +28,6 @@ function Home({ userActivities }) {
                 <CustomHeader title="Home" isHome={true} navigation={navigation} />
                 <View style={styles.container}>
                     <Activities />
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => navigation.navigate('HomeDetails')}
-                    >
-                        <Text style={styles.buttonText}> Go to Home Details </Text>
-                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </SafeAreaView>

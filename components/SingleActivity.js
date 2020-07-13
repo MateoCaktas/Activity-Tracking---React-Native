@@ -19,8 +19,7 @@ export default function Activity({ activity }) {
             <View style={styles.containerData}>
                 <ImageBackground source={activityImage} style={styles.backgroundImage}>
                 </ImageBackground>
-                    <View style={styles.row}>
-                        <Text style={styles.containerText}>{activity.id}</Text>
+                    <View style={{...styles.row, justifyContent:'flex-start', marginLeft: 65}}>
                         <View>
                             <Text>{activity.activityType}</Text>
                             <Image source={activityIcon} style={{ width: 30, height: 30 }} />
@@ -28,7 +27,7 @@ export default function Activity({ activity }) {
                     </View>
                     <View style={styles.row}>
                         <View>
-                            <Text>{startingDate.getDate()}-{startingDate.getMonth()}-{startingDate.getFullYear()}</Text>
+                            <Text>{startingDate.getDate()}-{(startingDate.getMonth()+1).toString()}-{startingDate.getFullYear()}</Text>
                             <Image source={CalendarIcon} style={{ width: 30, height: 30, alignSelf: 'center' }} />
                         </View>
                         <View>

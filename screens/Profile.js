@@ -3,20 +3,16 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ProfileImage from "../assets/profile-image-black.png"
 import CustomHeader from "../navigation/CustomHeader";
-
 import { connect } from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
 
 function Profile({ userProfile }) {
     const navigation = useNavigation();
-    const [interests, changeInterests ] = useState(userProfile.interests);
     const [isFocused, changeFocus] = useState(false);
 
     useEffect(() => {
         const focus = navigation.addListener('focus', () => {
            changeFocus(true);
-
-           changeInterests(userProfile.interests);
         })
 
         const blur = navigation.addListener('blur', () => {
@@ -36,7 +32,7 @@ function Profile({ userProfile }) {
                 <Text style={styles.miniHeader}>Interests:</Text>
                 <View>
                 {
-                    interests.map(interest => (
+                    userProfile.interests.map(interest => (
                         <Text style={styles.interestItem} key={interest}>{interest}</Text>
                     ))
                 }
